@@ -53,5 +53,8 @@ html,body{height: 100%}
     margin-top: -9em;
     margin-left: -15em;
     background-color: #FEFBF3;
+}
+
+.nanny-form{
     border-style: dashed;
 }
