@@ -15,7 +15,7 @@ public class Utils {
     
     public static String COUCHDB_PWD;
     
-    public static String NANNY_REDIRECT = "<html><meta http-equiv=\"refresh\" content=\"2;URL=/nanny.html\"><head></head><body>redirecting ...</body></html>";
+    public static String NANNY_REDIRECT = "<html><meta http-equiv=\"refresh\" content=\"2;URL=/html/nanny.html\"><head></head><body>redirecting ...</body></html>";
     
     static {
         
