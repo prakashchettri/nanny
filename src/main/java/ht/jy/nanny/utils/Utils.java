@@ -15,6 +15,8 @@ public class Utils {
     
     public static String COUCHDB_PWD;
     
+    public static String NANNY_REDIRECT = "<html><meta http-equiv=\"refresh\" content=\"2;URL=/nanny.html\"><head></head><body>redirecting ...</body></html>";
+    
     static {
         
         InputStream in = Utils.class.getClassLoader().getResourceAsStream("couchdb.properties");
@@ -25,7 +27,7 @@ public class Utils {
             COUCHDB_USER = properties.getProperty("user");
             COUCHDB_PWD = properties.getProperty("pwd");
         } catch (IOException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            e.printStackTrace();
         }
 
     }
