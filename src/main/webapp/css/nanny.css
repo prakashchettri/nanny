@@ -1,0 +1,57 @@
+html,body{height: 100%}
+.nanny-container{height: 100%;}
+
+.nanny-sidebar{
+    height: 95%;
+    padding: 5px;
+    background-color: #bbd8e9;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+.nanny-content{
+    height: 95%;
+    padding: 5px;
+    background-color: #dceaf4;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+#calendar {
+    margin: 5px;
+}
+
+.show-grid {
+    height: 60px;
+}
+
+.show-grid [class*="span"] {
+    background: #EEE;
+    text-align: center;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    min-height: 30px;
+    line-height: 60px;
+    margin-top: 5px;
+}
+
+.span-one-five {
+    width: 18%;
+    font-size: 20px
+}
+
+.clearfix input {
+    height:30px;
+}
+
+.span4{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -9em;
+    margin-left: -15em;
+    background-color: #FEFBF3;
+    border-style: dashed;
+}
