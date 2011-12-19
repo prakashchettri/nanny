@@ -7,10 +7,7 @@ function Nanny(){
 }
 
 
-Nanny.prototype.connect = function(username, password){
-
-
-}
+var nanny = new Nanny();
 
 
 

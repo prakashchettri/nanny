@@ -7,6 +7,8 @@ import org.codehaus.jackson.JsonNode;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 /**
  * @author Jeremy Herault
@@ -15,9 +17,19 @@ import javax.ws.rs.Path;
 public class Login {
 
     @POST
+    @Produces(MediaType.TEXT_HTML)
     public String login(@FormParam("login") String login, @FormParam("pwd") String password){
 
+        String html = "BAD LOGIN";
         JsonNode nanny = CouchDB.getInstance().connect(login);
-        return nanny.get("password").getTextValue().equals(password) ? Utils.NANNY_REDIRECT : "BAD BAD BAD I'M BAD...";
+        //bad login
+        if (nanny != null){
+            if (nanny.get("password").getTextValue().equals(password)){
+                html = Utils.NANNY_REDIRECT;
+            }else{
+                html = "BAD PWD";
+            }
+        }
+        return html;
     }
 }

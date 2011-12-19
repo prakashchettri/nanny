@@ -2,6 +2,14 @@
 <head>
     <link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="../css/nanny.css">
+    <script type="text/javascript" language="javascript" src="../javascript/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" language="JavaScript" src="../javascript/jquery.cookie.js"></script>
+    <script type="text/javascript" language="JavaScript">
+        if ( $.cookie('connected') == "true"){
+            $(location).attr('href',"/html/nanny.html");
+        }
+    </script>
+
     <title>Connexion</title>
 </head>
 <body>

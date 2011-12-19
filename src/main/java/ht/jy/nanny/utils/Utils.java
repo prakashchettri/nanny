@@ -17,6 +17,8 @@ public class Utils {
     
     public static String NANNY_REDIRECT = "<html><meta http-equiv=\"refresh\" content=\"2;URL=/html/nanny.html\"><head></head><body>redirecting ...</body></html>";
     
+    public static String NANNY_INDEX_REDIRECT = "<html><meta http-equiv=\"refresh\" content=\"2;URL=/html/index.html\"><head></head><body>redirecting ...</body></html>";
+    
     static {
         
         InputStream in = Utils.class.getClassLoader().getResourceAsStream("couchdb.properties");
