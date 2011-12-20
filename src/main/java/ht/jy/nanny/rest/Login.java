@@ -1,5 +1,6 @@
 package ht.jy.nanny.rest;
 
+import com.sun.jersey.api.view.Viewable;
 import ht.jy.nanny.couchdb.CouchDB;
 import ht.jy.nanny.utils.Utils;
 import org.codehaus.jackson.JsonNode;
@@ -8,7 +9,7 @@ import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.*;
 
 /**
  * @author Jeremy Herault
@@ -17,19 +18,27 @@ import javax.ws.rs.core.MediaType;
 public class Login {
 
     @POST
-    @Produces(MediaType.TEXT_HTML)
-    public String login(@FormParam("login") String login, @FormParam("pwd") String password){
-
-        String html = "BAD LOGIN";
+    public Response login(@FormParam("login") String login, @FormParam("pwd") String password){
+        Viewable view;
+        NewCookie cookie;
+        Response response = null;
         JsonNode nanny = CouchDB.getInstance().connect(login);
         //bad login
         if (nanny != null){
             if (nanny.get("password").getTextValue().equals(password)){
-                html = Utils.NANNY_REDIRECT;
+                view = new Viewable("/html/nanny.html");
+                cookie = new NewCookie("connected", "true");
             }else{
-                html = "BAD PWD";
+                view = new Viewable("/html/index.html");
+                cookie =  new NewCookie("password", "false");
             }
+        }else{
+            view = new Viewable("/html/index.html");
+            cookie = new NewCookie("login", "false");
         }
-        return html;
+
+        response = Response.ok(view).cookie(cookie).build();
+
+        return response;
     }
 }

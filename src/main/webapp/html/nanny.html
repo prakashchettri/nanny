@@ -8,7 +8,9 @@
     <script type="text/javascript" language="javascript" src="../javascript/jquery-1.7.1.min.js"></script>
     <script type="text/javascript" language="JavaScript" src="../javascript/jquery.cookie.js"></script>
     <script type="text/javascript" language="JavaScript">
-        $.cookie('connected', 'true', { expires: 7, path: '/' });
+        if ($.cookie('connected') == null || $.cookie('connected') == "false"){
+            $(location).attr('href',"/html/index.html");
+        }
     </script>
     <title>Checkin</title>
 

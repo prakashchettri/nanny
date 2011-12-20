@@ -7,6 +7,8 @@ import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 import ht.jy.nanny.utils.Utils;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
@@ -14,6 +16,8 @@ import java.io.IOException;
  *  @author Jeremy Herault
  */
 public class CouchDB {
+
+    Logger log = LoggerFactory.getLogger(CouchDB.class);
 
     private static final CouchDB instance;
 
@@ -39,12 +43,11 @@ public class CouchDB {
         try {
             String json = resource.path("nanny").path(nanny_name).get(String.class);
             ObjectMapper mapper = new ObjectMapper();
-
             nanny = mapper.readTree(json);
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
         } catch(UniformInterfaceException e){
-            e.printStackTrace();
+            log.error(e.getMessage());
         }
         return nanny;
     }
@@ -56,7 +59,7 @@ public class CouchDB {
         try {
             familly = mapper.readTree(json);
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
         }
         return familly;
     }
