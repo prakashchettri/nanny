@@ -18,26 +18,32 @@ import javax.ws.rs.core.*;
 public class Login {
 
     @POST
-    public Response login(@FormParam("login") String login, @FormParam("pwd") String password){
+    public Response login(@FormParam("login") String login, @FormParam("pwd") String password) {
         Viewable view;
         NewCookie cookie;
         Response response = null;
         JsonNode nanny = CouchDB.getInstance().connect(login);
+
         //bad login
-        if (nanny != null){
-            if (nanny.get("password").getTextValue().equals(password)){
+        if (nanny != null) {
+            if (nanny.get("password").getTextValue().equals(password)) {
                 view = new Viewable("/html/nanny.html");
                 cookie = new NewCookie("connected", "true");
-            }else{
+            } else {
                 view = new Viewable("/html/index.html");
-                cookie =  new NewCookie("password", "false");
+                cookie = new NewCookie("password", "false");
             }
-        }else{
+        } else {
             view = new Viewable("/html/index.html");
             cookie = new NewCookie("login", "false");
         }
 
-        response = Response.ok(view).cookie(cookie).build();
+        Response.ResponseBuilder builder = Response.ok(view)
+                .header("Set-Cookie", "connected=deleted;")
+                .header("Set-Cookie", "password=deleted;")
+                .header("Set-Cookie", "login=deleted;");
+
+        response = builder.cookie(cookie).build();
 
         return response;
     }

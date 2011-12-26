@@ -11,22 +11,22 @@
 
     <name>Nanny</name>
 
-    <pluginRepositories>
-        <pluginRepository>
+    <repositories>
+        <repository>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
             <id>central</id>
             <name>plugins-release</name>
             <url>http://maven.jelastic.com/plugins-release</url>
-        </pluginRepository>
-        <pluginRepository>
+        </repository>
+        <repository>
             <snapshots/>
             <id>snapshots</id>
             <name>plugins-snapshot</name>
             <url>http://maven.jelastic.com/plugins-snapshot</url>
-        </pluginRepository>
-    </pluginRepositories>
+        </repository>
+    </repositories>
 
     <build>
         <resources>
@@ -38,6 +38,14 @@
         <plugins>
 
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <warName>Nanny-${project.version}</warName>
+                </configuration>
+            </plugin>
+
+            <plugin>
                 <groupId>com.jelastic</groupId>
                 <artifactId>jelastic-maven-plugin</artifactId>
                 <version>1.5</version>
@@ -45,7 +53,16 @@
                     <email>${jelastic.username}</email>
                     <password>${jelastic.password}</password>
                     <environment>nanny</environment>
+                    <finalName>Nanny-${project.version}</finalName>
                 </configuration>
+                <executions>
+                    <execution>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>deploy</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
             <plugin>

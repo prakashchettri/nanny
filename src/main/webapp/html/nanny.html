@@ -7,15 +7,39 @@
     <link rel="stylesheet" type="text/css" href="../css/nanny.css">
     <script type="text/javascript" language="javascript" src="../javascript/jquery-1.7.1.min.js"></script>
     <script type="text/javascript" language="JavaScript" src="../javascript/jquery.cookie.js"></script>
+    <script type="text/javascript" language="javascript" src="../javascript/bootstrap-dropdown-1.4.0.js"></script>
     <script type="text/javascript" language="JavaScript">
-        if ($.cookie('connected') == null || $.cookie('connected') == "false"){
-            $(location).attr('href',"/html/index.html");
+        if ($.cookie('connected') != "true") {
+            $(location).attr('href', "/html/index.html");
         }
     </script>
     <title>Checkin</title>
 
 </head>
 <body>
+<div class="topbar" data-dropdown="dropdown">
+    <div class="topbar-inner">
+        <div class="container">
+            <h3>
+                <a class="brand" href="#">Nanny</a>
+            </h3>
+            <ul class="nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <ul class="nav secondary-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">Profil</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/rest/logout">Se deconnecter</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</div>
 <div class="container-fluid nanny-container">
     <div class="sidebar nanny-sidebar">
         sidebar
