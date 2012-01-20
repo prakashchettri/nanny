@@ -12,6 +12,29 @@
         if ($.cookie('connected') != "true") {
             $(location).attr('href', "/html/index.html");
         }
+
+
+        var weeks = {};
+
+        weeks[0] = {monday:"lundi", thuesday:"mardi", wednesday:"mercredi", thursday:"jeudi", friday:"vendredi"};
+        weeks[1] = {monday:"lundi 1", thuesday:"mardi 1", wednesday:"mercredi 1", thursday:"jeudi 1", friday:"vendredi 1"};
+
+        var index = 0;
+
+
+        function change() {
+
+            index = index == 0 ? 1 : 0;
+
+            var week = weeks[index];
+
+            for (var day in week) {
+
+               $("#"+day).text(week[day]);
+            }
+
+        }
+
     </script>
     <title>Checkin</title>
 
@@ -39,21 +62,20 @@
         </div>
     </div>
 </div>
-</div>
+
 <div class="container-fluid nanny-container">
-    <div class="sidebar nanny-sidebar">
-        sidebar
-    </div>
     <div class="content nanny-content">
         <div id="calendar">
             <div class="row show-grid">
-                <div class="span-one-five">Lundi</div>
-                <div class="span-one-five">Mardi</div>
-                <div class="span-one-five">Mercredi</div>
-                <div class="span-one-five">Jeudi</div>
-                <div class="span-one-five">Vendredi</div>
+                <div id="monday" class="span-one-five">Lundi</div>
+                <div id="thuesday" class="span-one-five">Mardi</div>
+                <div id="wednesday" class="span-one-five">Mercredi</div>
+                <div id="thursday" class="span-one-five">Jeudi</div>
+                <div id="friday" class="span-one-five">Vendredi</div>
             </div>
         </div>
+        <br/>
+        <input type="button" onclick="change()" value="click me">click me</button>
     </div>
 </div>
 </body>
